@@ -67,7 +67,7 @@ class MisuseFilterTest extends SlimTestCase
 
     function test_counts_misuse_without_reviews()
     {
-        $runs = $this->runController->getRuns($this->detector, $this->experiment, 1);
+        $runs = $this->runController->getRuns($this->detector, $this->experiment, 1, 2);
 
         self::assertEquals(1, sizeof($runs[0]->misuses));
     }
@@ -76,7 +76,7 @@ class MisuseFilterTest extends SlimTestCase
     {
         $this->reviewController->updateOrCreateReview('1', $this->reviewer1->id, '', [1 => $this->decided_review]);
 
-        $runs = $this->runController->getRuns($this->detector, $this->experiment, 1);
+        $runs = $this->runController->getRuns($this->detector, $this->experiment, 1, 2);
 
         self::assertEquals(1, sizeof($runs[0]->misuses));
     }
@@ -86,7 +86,7 @@ class MisuseFilterTest extends SlimTestCase
         $this->reviewController->updateOrCreateReview('1', $this->reviewer1->id, '', [1 => $this->decided_review]);
         $this->reviewController->updateOrCreateReview('1', $this->reviewer2->id, '', [1 => $this->decided_review]);
 
-        $runs = $this->runController->getRuns($this->detector, $this->experiment, 1);
+        $runs = $this->runController->getRuns($this->detector, $this->experiment, 1, 2);
 
         self::assertEquals(1, sizeof($runs[0]->misuses));
     }
@@ -95,7 +95,7 @@ class MisuseFilterTest extends SlimTestCase
     {
         $this->reviewController->updateOrCreateReview('1', $this->reviewer1->id, '', [1 => $this->undecided_review]);
 
-        $runs = $this->runController->getRuns($this->detector, $this->experiment, 1);
+        $runs = $this->runController->getRuns($this->detector, $this->experiment, 1, 2);
 
         self::assertEquals(2, sizeof($runs[0]->misuses));
     }
@@ -105,7 +105,7 @@ class MisuseFilterTest extends SlimTestCase
         $this->reviewController->updateOrCreateReview('1', $this->reviewer1->id, '', [1 => $this->undecided_review]);
         $this->reviewController->updateOrCreateReview('1', $this->reviewer2->id, '', [1 => $this->decided_review]);
 
-        $runs = $this->runController->getRuns($this->detector, $this->experiment, 1);
+        $runs = $this->runController->getRuns($this->detector, $this->experiment, 1, 2);
 
         self::assertEquals(2, sizeof($runs[0]->misuses));
     }
