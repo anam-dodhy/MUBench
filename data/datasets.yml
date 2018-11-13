@@ -788,3 +788,6 @@ JCA-All: # All JCA misuses.
   - jmrtd.67.2
   - pawotag.82.1
   - tab-apps.62.1
+
+GRADLE-Datasets:
+  - dragonite-java.e26ffff
